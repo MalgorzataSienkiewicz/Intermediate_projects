@@ -1,1 +1,1 @@
-# Intermediate_proijects
+# Intermediate_projects
