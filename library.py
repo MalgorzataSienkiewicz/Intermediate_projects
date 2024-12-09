@@ -1,2 +1,12 @@
+from books import BookForAdults, BookForChildren
 class Library:
-    pass
+    def __init__(self):
+        self.books = []
+
+        book1 = BookForAdults("The Chemistry of Death.", "Simon Beckett", 368,
+                              True, "Synopsis", "Crime\n")
+        book2 = BookForChildren("Pucio learns to speak.", "Marta Galewska-Kustra",
+                                40, True, "synopsis", "0+\n")
+
+        self.books.append(book1)
+        self.books.append(book2)

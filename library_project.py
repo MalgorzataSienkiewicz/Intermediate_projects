@@ -1,16 +1,14 @@
 import sys
 from books import BookForAdults, BookForChildren
+from library import Library
 
-def display_library_books():
-    book1 = BookForAdults("The Chemistry of Death.", "Simon Beckett", 368,
-                          True, "Synopsis", "Crime\n")
-    book2 = BookForChildren("Pucio learns to speak.", "Marta Galewska-Kustra",
-                             40, True, "synopsis", "0+\n")
+def display_library_books(library):
+    for book in library.books:
+        book.display_book_info()
 
-    book1.display_book_info()
-    book2.display_book_info()
 
 if __name__ == "__main__":
+    library = Library()
     while True:
         print("1. View a list of your books.")
         print("2. View a list of books in your library.")
