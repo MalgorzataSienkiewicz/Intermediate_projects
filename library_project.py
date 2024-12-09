@@ -1,5 +1,5 @@
 import sys
-from books import BookForAdults, BookForChildren
+from books import BookForAdults, BookForChildren , BookNotFoundError, BookNotAvailableError
 from library import Library
 from users import User
 
@@ -14,11 +14,22 @@ def display_borrowed_books(user):
 
 def borrow_book(user, library):
     title = input("Type the title of the book you want to borrow: ")
-    book = library.borrow_book(title)
-    user.borrow_book(book)
+    try:
+        book = library.borrow_book(title)
+        user.borrow_book(book)
+    except BookNotFoundError:
+        print("A book with this title was not found.")
+    except BookNotAvailableError:
+        print("The book with this title has been borrowed.")
 
-def return_book():
-    pass
+
+def return_book(user, library):
+    title = input("Type the titles of the books you want to return: ")
+    try:
+        user.return_book(title)
+        library.return_book(title)
+    except BookNotFoundError:
+        print("You don't have such a book.")
 
 
 if __name__ == "__main__":
@@ -47,6 +58,6 @@ if __name__ == "__main__":
         elif option == 3:
             borrow_book(user, library)
         elif option == 4:
-            return_book()
+            return_book(user, library)
         elif option == 5:
             sys.exit()

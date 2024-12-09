@@ -39,3 +39,10 @@ class BookForChildren(Book):
     def display_book_info(self):
         super().display_common_book_info()
         print(f'Age: {self.age}')
+
+class BookNotFoundError(Exception):
+    pass
+
+
+class BookNotAvailableError(Exception):
+    pass

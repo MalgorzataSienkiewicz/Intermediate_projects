@@ -1,4 +1,4 @@
-from books import BookForAdults, BookForChildren
+from books import BookForAdults, BookForChildren, BookNotFoundError, BookNotAvailableError
 class Library:
     def __init__(self):
         self.books = []
@@ -11,8 +11,18 @@ class Library:
         self.books.append(book1)
         self.books.append(book2)
 
-        def borrow_book(self, title):
-            for book in self.books:
-                if book.title == title and book.available:
-                    book.available = False
-                    return book
+    def borrow_book(self, title):
+        for book in self.books:
+            if book.title == title and book.available:
+                book.available = False
+                return book
+            elif book.title == title and not book.available:
+                raise BookNotAvailableError
+        raise BookNotFoundError
+
+
+    def return_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                book.available = True
+                return
