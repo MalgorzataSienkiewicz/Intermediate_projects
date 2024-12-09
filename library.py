@@ -10,3 +10,9 @@ class Library:
 
         self.books.append(book1)
         self.books.append(book2)
+
+        def borrow_book(self, title):
+            for book in self.books:
+                if book.title == title and book.available:
+                    book.available = False
+                    return book

@@ -1,17 +1,33 @@
 import sys
 from books import BookForAdults, BookForChildren
 from library import Library
+from users import User
 
 def display_library_books(library):
     for book in library.books:
         book.display_book_info()
 
+def display_borrowed_books(user):
+    for book in user.books:
+        book.display_book_info()
+
+
+def borrow_book(user, library):
+    title = input("Type the title of the book you want to borrow: ")
+    book = library.borrow_book(title)
+    user.borrow_book(book)
+
+def return_book():
+    pass
+
 
 if __name__ == "__main__":
     library = Library()
+    user = User("Gosia")
+
     while True:
-        print("1. View a list of your books.")
-        print("2. View a list of books in your library.")
+        print("1. View a list of books in your library.")
+        print("2. View a list of your books. ")
         print("3. Borrow a book.")
         print("4. Return a book.")
         print("5. Exit program.")
@@ -25,12 +41,12 @@ if __name__ == "__main__":
 
 
         if option == 1:
-            pass
+            display_library_books(library)
         elif option == 2:
-            display_library_books()
+            display_borrowed_books(user)
         elif option == 3:
-            pass
+            borrow_book(user, library)
         elif option == 4:
-            pass
+            return_book()
         elif option == 5:
             sys.exit()
