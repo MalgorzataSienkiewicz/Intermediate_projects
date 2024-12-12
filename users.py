@@ -13,4 +13,9 @@ class User:
                self.books.remove(book)
                return
 
-        raise BookNotFoundError
+
+
+       raise BookNotFoundError
+
+class UserNotFoundError(Exception):
+    pass
