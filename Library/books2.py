@@ -18,9 +18,9 @@ class Books(ABC):
         print(f"Title: {self.title}")
         print(f"Author: {self.author}")
         print(f"Pages: {self.pages}")
-        self.display_concrete_info()
         print(f"Available? {'Yes' if self.available else 'No'}")
         print(f"Synopsis: {self.synopsis}")
+        self.display_concrete_info()
 
 class BooksForChildren(Books):
     def __init__(self, category, title, author, pages, available, synopsis, age):
@@ -30,14 +30,19 @@ class BooksForChildren(Books):
     def display_concrete_info(self):
         print(f"Age: {self.age}")
 
+    def display_info_book(self):
+        super().display_info_book()
+
 class BooksForAdults(Books):
     def __init__(self, category, title, author, pages, available, synopsis, genre):
         super().__init__(category, title, author, pages, available, synopsis)
         self.genre = genre
 
-
     def display_concrete_info(self):
         print(f"Genre: {self.genre}")
+
+    def display_info_book(self):
+        super().display_info_book()
 
 class BookNotFoundError(Exception):
     pass

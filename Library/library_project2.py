@@ -1,10 +1,16 @@
 import sys
-from books2 import Books, BookNotAvailableError, BookNotFoundError, ToManyBooks
+from books2 import(
+    Books,
+    BookNotAvailableError,
+    BookNotFoundError,
+    ToManyBooks
+)
 from library2 import Library
 from users2 import User, UserNotFoundError
 
 def display_library_books(library):
-    library.display_books()
+    for book in library.list_of_books():
+        book.display_info_book()
 
 def display_borrowed_books(user):
     user.display_books()
@@ -12,11 +18,13 @@ def display_borrowed_books(user):
 def borrow_book(user, library):
     title = input("Type the title of the book you want to borrow: ")
     try:
-        user.count_books()
-        book = library.borrow_a_book(title, user)
-        user.borrow_book(book)
-    except ToManyBooks:
-        print("You have too many books. First, you must return another book.")
+        if user.count_books() < 2:
+            book = library.borrowed_a_book(title, user)
+            user.borrow_book(book)
+            print(f"You have borrowed a book titled: '{title}'.")
+        else:
+            raise ToManyBooks("You have too many books."
+                              "First, you must return another book.")
     except BookNotFoundError:
         print("A book with this title was not found.")
     except BookNotAvailableError:
@@ -25,7 +33,7 @@ def borrow_book(user, library):
 def return_book(user, library):
     title = input("Type the title of the book you want to return: ").strip()
     try:
-        user.return_a_book(title)
+        user.return_book(title)
         library.return_a_book(title)
         print(f'Book "{title}" successfully returned.')
     except BookNotFoundError:
@@ -68,7 +76,7 @@ if __name__ == "__main__":
             print("Incorrect command. Try again.\n")
 
         if option == 1:
-            books.display_info_book(library)
+            display_library_books(library)
         elif option == 2:
             display_borrowed_books(user)
         elif option == 3:

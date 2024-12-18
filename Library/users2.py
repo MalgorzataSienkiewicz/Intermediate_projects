@@ -32,7 +32,7 @@ class User:
 
     def display_books(self):
         if not self.books:
-            print("No books borrowed.")
+            print("No books borrowed.\n")
         else:
             print(f"Books borrowed by {self.name}:")
             for book in self.books:

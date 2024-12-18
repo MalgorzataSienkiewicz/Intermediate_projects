@@ -1,5 +1,5 @@
-import users2
-from books2 import (
+
+from books2 import(
     BooksForChildren,
     BooksForAdults,
     BookNotFoundError,
@@ -9,22 +9,23 @@ from books2 import (
 from users2 import User
 
 class Library:
-    books = []
+    def __init__(self):
+        self.books = []
 
     #TODO synopsis
     def list_of_books(self):
 
-        book1 = BooksForAdults("The Chemistry of Death.", "Simon Beckett", 368,
+        book1 = BooksForAdults("Adults", "The Chemistry of Death", "Simon Beckett", 368,
                                True, "Synopsis", "Crime\n")
-        book2 = BooksForChildren("Pucio learns to speak.", "Marta Galewska-Kustra",
+        book2 = BooksForChildren("Children", "Pucio learns to speak", "Marta Galewska-Kustra",
                                  40, True, "synopsis", "0+\n")
 
-        Library.books.append(book1)
-        Library.books.append(book2)
-        return Library.books
+        self.books.append(book1)
+        self.books.append(book2)
+        return self.books
 
-    def borrowed_a_book(self, title, books, user):
-        if User.count_books(user.books) < 2:
+    def borrowed_a_book(self, title, user):
+        if user.count_books() < 2:
             for book in self.list_of_books():
                 if book.title == title and book.available:
                     book.available = False
