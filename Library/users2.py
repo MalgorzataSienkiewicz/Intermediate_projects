@@ -1,3 +1,4 @@
+#komentarz pomocniczy
 from books2 import BookNotFoundError
 class User:
     def __init__(self, name):

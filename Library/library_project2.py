@@ -1,3 +1,4 @@
+#komentarz pomocniczy
 import sys
 from books2 import(
     Books,

@@ -1,4 +1,4 @@
-
+# komentarz pomocniczy
 from books2 import(
     BooksForChildren,
     BooksForAdults,

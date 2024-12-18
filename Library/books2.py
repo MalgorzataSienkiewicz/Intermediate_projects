@@ -1,3 +1,4 @@
+# komentarz pomocniczy
 from abc import ABC, abstractmethod
 
 class Books(ABC):
