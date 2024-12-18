@@ -13,7 +13,7 @@ def borrow_book(user, library):
     title = input("Type the title of the book you want to borrow: ")
     try:
         user.count_books()
-        book = library.borrow_a_book(title)
+        book = library.borrow_a_book(title, user)
         user.borrow_book(book)
     except ToManyBooks:
         print("You have too many books. First, you must return another book.")
@@ -27,6 +27,7 @@ def return_book(user, library):
     try:
         user.return_a_book(title)
         library.return_a_book(title)
+        print(f'Book "{title}" successfully returned.')
     except BookNotFoundError:
         print("A book with this title was not found.")
 
@@ -34,8 +35,7 @@ def login(users, name):
     for user in users:
         if user.name == name:
             return user
-    raise UserNotFoundError (f"The user doesn't exist.")
-
+    raise UserNotFoundError(f"The user doesn't exist.")
 
 if __name__ == "__main__":
     library = Library()
@@ -53,8 +53,6 @@ if __name__ == "__main__":
             except UserNotFoundError:
                 print("The user doesn't exist.")
 
-
-
         print("1. View a list of books in your library.")
         print("2. View a list of your books. ")
         print("3. Borrow a book.")
@@ -65,13 +63,12 @@ if __name__ == "__main__":
         try:
             option = int(input("Type option(1, 2, 3, 4, 5 or 6): \n"))
             if option not in [1, 2, 3, 4, 5, 6]:
-                raise Exception
-        except Exception:
+                raise ValueError
+        except ValueError:
             print("Incorrect command. Try again.\n")
 
-
         if option == 1:
-            books.display_info_book(name)
+            books.display_info_book(library)
         elif option == 2:
             display_borrowed_books(user)
         elif option == 3:

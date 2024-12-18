@@ -15,8 +15,9 @@ class User:
         users = [user1, user2, user3, user4, user5]
         return users
 
-    def borrowed_book(self, book):
+    def borrow_book(self, book):
         self.books.append(book)
+
 
     def count_books(self):
        return len(self.books)
