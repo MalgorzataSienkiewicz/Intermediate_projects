@@ -41,7 +41,7 @@ class Library:
             if book.title == title:
                 book.available = True
                 return
-        raise BookNotFoundError(f"Book 'title' not found in the library.")
+        raise BookNotFoundError(f"Book '{title}' not found in the library.")
 
 
 

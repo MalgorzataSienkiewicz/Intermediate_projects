@@ -21,7 +21,7 @@ def borrow_book(user, library):
         if user.count_books() < 2:
             book = library.borrowed_a_book(title, user)
             user.borrow_book(book)
-            print(f"You have borrowed a book titled: '{title}'.")
+            print(f"You have borrowed a book titled: '{title}'.\n")
         else:
             raise ToManyBooks("You have too many books."
                               "First, you must return another book.")
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             try:
                 name = input("If you want to log in, type your name: ").strip()
                 user = login(users, name)
-                print("You are logged in!")
+                print("You are logged in!\n")
             except UserNotFoundError:
                 print("The user doesn't exist.")
 

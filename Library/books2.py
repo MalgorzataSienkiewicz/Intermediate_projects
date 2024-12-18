@@ -30,9 +30,6 @@ class BooksForChildren(Books):
     def display_concrete_info(self):
         print(f"Age: {self.age}")
 
-    def display_info_book(self):
-        super().display_info_book()
-
 class BooksForAdults(Books):
     def __init__(self, category, title, author, pages, available, synopsis, genre):
         super().__init__(category, title, author, pages, available, synopsis)
@@ -41,8 +38,6 @@ class BooksForAdults(Books):
     def display_concrete_info(self):
         print(f"Genre: {self.genre}")
 
-    def display_info_book(self):
-        super().display_info_book()
 
 class BookNotFoundError(Exception):
     pass

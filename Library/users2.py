@@ -36,7 +36,7 @@ class User:
         else:
             print(f"Books borrowed by {self.name}:")
             for book in self.books:
-                book.display_book_info()
+                book.display_info_book()
 
 class UserNotFoundError(Exception):
     pass
