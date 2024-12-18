@@ -7,7 +7,7 @@ def display_library_books(library):
     library.display_books()
 
 def display_borrowed_books(user):
-    user.display_borrowed_books()
+    user.display_books()
 
 def borrow_book(user, library):
     title = input("Type the title of the book you want to borrow: ")
@@ -22,7 +22,7 @@ def borrow_book(user, library):
     except BookNotAvailableError:
         print("The book with this title has been borrowed.")
 
-def return_book(user):
+def return_book(user, library):
     title = input("Type the title of the book you want to return: ").strip()
     try:
         user.return_a_book(title)
@@ -34,10 +34,12 @@ def login(users, name):
     for user in users:
         if user.name == name:
             return user
+    raise UserNotFoundError (f"The user doesn't exist.")
+
 
 if __name__ == "__main__":
     library = Library()
-    users = User
+    users = User.users_names()
     books = Books
 
     user = None
