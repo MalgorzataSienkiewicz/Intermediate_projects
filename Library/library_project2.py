@@ -18,13 +18,8 @@ def display_borrowed_books(user):
 def borrow_book(user, library):
     title = input("Type the title of the book you want to borrow: ")
     try:
-        if user.count_books() < 2:
-            book = library.borrowed_a_book(title, user)
-            user.borrow_book(book)
-            print(f"You have borrowed a book titled: '{title}'.\n")
-        else:
-            raise ToManyBooks("You have too many books."
-                              "First, you must return another book.")
+        library.borrowed_a_book(title, user)
+        print(f"You have borrowed a book titled: '{title}'.\n")
     except BookNotFoundError:
         print("A book with this title was not found.")
     except BookNotAvailableError:
@@ -35,7 +30,7 @@ def return_book(user, library):
     try:
         user.return_book(title)
         library.return_a_book(title)
-        print(f'Book "{title}" successfully returned.')
+        print(f'Book "{title}" successfully returned.\n')
     except BookNotFoundError:
         print("A book with this title was not found.")
 
@@ -55,9 +50,13 @@ if __name__ == "__main__":
     while True:
         while user is None:
             try:
-                name = input("If you want to log in, type your name: ").strip()
-                user = login(users, name)
-                print(f"{name} you are logged in!\n")
+                name = input("If you want to log in type your name, "
+                             "if not type 'exit': ").strip().lower()
+                if not name == 'exit':
+                    user = login(users, name)
+                    print(f"{name} you are logged in!\n")
+                else:
+                    sys.exit()
             except UserNotFoundError:
                 print("The user doesn't exist.")
 
