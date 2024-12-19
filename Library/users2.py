@@ -18,13 +18,12 @@ class User:
     def borrow_book(self, book):
         self.books.append(book)
 
-
     def count_books(self):
        return len(self.books)
 
     def return_book(self, title):
         for book in self.books:
-            if book.title == title:
+            if book.title.lower() == title:
                 self.books.remove(book)
                 return
         raise BookNotFoundError(f"Book '{title}' not found in user's borrowed list.")

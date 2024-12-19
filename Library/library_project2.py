@@ -21,6 +21,7 @@ def borrow_book(user, library):
             raise ToManyBooks
     except ToManyBooks:
         print("You cannot borrow more than 2 books. First, return some book.")
+        return
 
     title = input("Type the title of the book you want to borrow: ").strip().lower()
     try:
@@ -31,7 +32,14 @@ def borrow_book(user, library):
         print("The book with this title has been borrowed.")
 
 def return_book(user, library):
-    title = input("Type the title of the book you want to return: ").strip()
+    try:
+        if user.count_books() == 0:
+            raise BookNotFoundError
+    except BookNotFoundError:
+        print("You have not borrowed any books.")
+        return
+
+    title = input("Type the title of the book you want to return: ").strip().lower()
     try:
         user.return_book(title)
         library.return_a_book(title)

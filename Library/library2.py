@@ -39,7 +39,7 @@ class Library:
                         user.borrow_book(book)
                         print(f"You have borrowed a book titled: '{title.capitalize()}'.\n")
                         return book
-                    elif book.title == title and not book.available:
+                    elif book.title.lower() == title and not book.available:
                         raise BookNotAvailableError
                 raise BookNotFoundError
             raise ToManyBooks

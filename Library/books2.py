@@ -14,7 +14,7 @@ class Books(ABC):
 
     def display_info_book(self):
         print(f"Category: {self.category}")
-        print(f"Title: {self.title}")
+        print(f"Title: {self.title.title()}")
         print(f"Author: {self.author}")
         print(f"Pages: {self.pages}")
         print(f"Available? {'Yes' if self.available else 'No'}")
@@ -22,7 +22,7 @@ class Books(ABC):
 
 class BooksForChildren(Books):
     def __init__(self, category, title, author, pages, available, age):
-        super().__init__(category, title, author, pages, available)
+        super().__init__(category, title.lower(), author, pages, available)
         self.age = age
 
     def display_concrete_info(self):
@@ -30,7 +30,7 @@ class BooksForChildren(Books):
 
 class BooksForAdults(Books):
     def __init__(self, category, title, author, pages, available, genre):
-        super().__init__(category, title, author, pages, available)
+        super().__init__(category, title.lower(), author, pages, available)
         self.genre = genre
 
     def display_concrete_info(self):
