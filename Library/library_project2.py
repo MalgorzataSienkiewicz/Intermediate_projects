@@ -1,4 +1,3 @@
-#komentarz pomocniczy
 import sys
 from books2 import(
     Books,
@@ -58,7 +57,7 @@ if __name__ == "__main__":
             try:
                 name = input("If you want to log in, type your name: ").strip()
                 user = login(users, name)
-                print("You are logged in!\n")
+                print(f"{name} you are logged in!\n")
             except UserNotFoundError:
                 print("The user doesn't exist.")
 

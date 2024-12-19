@@ -1,4 +1,3 @@
-# komentarz pomocniczy
 from books2 import(
     BooksForChildren,
     BooksForAdults,
@@ -7,7 +6,6 @@ from books2 import(
     ToManyBooks
 )
 from users2 import User
-
 class Library:
     def __init__(self):
         self.books = []
