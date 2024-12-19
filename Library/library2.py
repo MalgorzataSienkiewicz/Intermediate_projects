@@ -10,9 +10,6 @@ class Library:
     def __init__(self):
         self.books = []
 
-    #TODO synopsis
-    def list_of_books(self):
-
         book1 = BooksForAdults("Adults", "The Chemistry of Death",
                                "Simon Beckett", 368,
                                True, "Crime\n")
@@ -28,12 +25,9 @@ class Library:
                                  "Marta Galewska-Kustra",
                                  40, True, "0+\n")
 
-        self.books.append(book1)
-        self.books.append(book2)
-        self.books.append(book3)
-        self.books.append(book4)
-        self.books.append(book5)
-        self.books.append(book6)
+        self.books.extend([book1, book2, book3, book4, book5, book6])
+
+    def list_of_books(self):
         return self.books
 
     def borrowed_a_book(self, title, user):
